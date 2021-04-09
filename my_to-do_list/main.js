@@ -1,15 +1,15 @@
-$ulList = document.querySelector('.container__list'); // whole list
-$todoMainInput = document.querySelector('.container__todo-main-input'); // task input field
-$addBtn = document.querySelector('.container__input-box__add-task'); // Button to add task to the list
+$ulList = document.querySelector('.wrapper__list'); // whole list
+$todoMainInput = document.querySelector('.wrapper__todo-main-input'); // task input field
+$addBtn = document.querySelector('.wrapper__input-box__add-task'); // Button to add task to the list
 
 const createTaskEntry = taskContent => {
     let li = document.createElement('li');
     $ulList.appendChild(li);
-    li.classList.add('container__list__list-item');
+    li.classList.add('wrapper__list__list-item');
 
     let div = document.createElement('div');
     li.appendChild(div);
-    div.classList.add('container__list__list-item__box');
+    div.classList.add('wrapper__list__list-item__box');
 
     let p = document.createElement('p');
     div.appendChild(p);
@@ -17,7 +17,7 @@ const createTaskEntry = taskContent => {
 
     let button = document.createElement('button');
     div.appendChild(button);
-    button.classList.add('container__list__list-item__box__delete-btn');
+    button.classList.add('wrapper__list__list-item__box__delete-btn');
     button.innerHTML = '<span class="fas fa-trash-alt"></span>'
 }
 
@@ -28,7 +28,7 @@ const addTask = () => {
 };
 
 const deleteTask = e => {
-    if (e.target.closest('button').className = 'container__list__list-item__box__delete-btn') {
+    if (e.target.closest('button').className = 'wrapper__list__list-item__box__delete-btn') {
         const deleteTask = e.target.closest('li');
         deleteTask.remove();
     }
