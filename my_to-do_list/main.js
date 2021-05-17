@@ -1,38 +1,44 @@
-$ulList = document.querySelector('.wrapper__list'); // whole list
-$todoMainInput = document.querySelector('.wrapper__todo-main-input'); // task input field
-$addBtn = document.querySelector('.wrapper__input-box__add-task'); // Button to add task to the list
+const form = document.querySelector('.container__input-box')
+const ulList = document.querySelector('.container__list')
+const tasksArr = []
 
-const createTaskEntry = taskContent => {
-    let li = document.createElement('li');
-    $ulList.appendChild(li);
-    li.classList.add('wrapper__list__list-item');
+const addTask = e => {
+  e.preventDefault();
+  const task = form.querySelector('input');
 
-    let div = document.createElement('div');
-    li.appendChild(div);
-    div.classList.add('wrapper__list__list-item__box');
+  // checking for empty input
+  if (!task.value) return alert('Enter task!'); 
 
-    let p = document.createElement('p');
-    div.appendChild(p);
-    p.innerText = taskContent
+  //creating list item
+  const li = document.createElement('li');
+  li.className = 'container__list__list-item';
+  li.innerHTML = `
+  <div class="container__list__list-item__box">
+    <p>${task.value}</p>
+    <button class="container__list__list-item__box__delete-btn">
+      <span class="fas fa-trash-alt"></span>
+    </button>
+  </div>`
 
-    let button = document.createElement('button');
-    div.appendChild(button);
-    button.classList.add('wrapper__list__list-item__box__delete-btn');
-    button.innerHTML = '<span class="fas fa-trash-alt"></span>'
+  task.value = "";
+
+  //pushing task to array
+  tasksArr.push(li)
+  tasksArr.forEach((el, key) => {
+    el.dataset.key = key;
+    el.querySelector('button').dataset.key = key;
+  });
+
+  //rendering list
+  ulList.innerHTML = '';
+  tasksArr.forEach(el => ulList.appendChild(el));
+
+  //handling task removal
+  const removeBtn = li.querySelector('button');
+  removeBtn.addEventListener('click', () => {
+    ulList.querySelector(`li[data-key="${removeBtn.dataset.key}"]`).remove();
+    tasksArr.splice(removeBtn.dataset.key, 1);
+  });
 }
 
-const addTask = () => {
-    let taskContent = $todoMainInput.value;
-    createTaskEntry(taskContent);
-    $todoMainInput.value = ''
-};
-
-const deleteTask = e => {
-    if (e.target.closest('button').className = 'wrapper__list__list-item__box__delete-btn') {
-        const deleteTask = e.target.closest('li');
-        deleteTask.remove();
-    }
-};
-
-$addBtn.addEventListener('click', addTask);
-$ulList.addEventListener('click', deleteTask);
+form.addEventListener('submit', addTask);
