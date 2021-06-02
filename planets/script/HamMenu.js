@@ -1,3 +1,5 @@
+import { Planet } from './Planet.js';
+
 export class HamMenu {
 	constructor(btn, list) {
 		this.btn = btn;
@@ -9,8 +11,9 @@ export class HamMenu {
 	}
 
 	choosePlanet(e) {
-		console.log(e.target);
 		this.hide();
+		const planet = new Planet(e.target.dataset.planetName, e.target.innerText);
+		planet.renderStats();
 	}
 
 	hide() {
