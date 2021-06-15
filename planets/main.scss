@@ -47,9 +47,12 @@ body {
 				opacity: 1;
 			}
 
-			li a {
-				text-decoration: none;
-				color: inherit;
+			li {
+				cursor: pointer;
+				a {
+					text-decoration: none;
+					color: inherit;
+				}
 			}
 		}
 	}
@@ -59,8 +62,18 @@ body {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+
+		h2 {
+			font-size: 3rem;
+		}
+
 		img {
 			width: 80%;
+		}
+
+		p {
+			margin-top: 1rem;
+			font-family: Arial, Helvetica, sans-serif;
 		}
 	}
 }

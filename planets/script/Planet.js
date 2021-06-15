@@ -1,25 +1,38 @@
-import { WikiAPI } from './WikiAPI.js';
-
-export class Planet extends WikiAPI {
-	constructor(name, displayName) {
-		super(displayName);
+export class Planet {
+	constructor(name, displayName, planetStats, planetStatsTemplate) {
 		this.name = name;
+		this.displayName = displayName;
+		this.planetStats = planetStats;
+		this.planetStatsTemplate = planetStatsTemplate;
 	}
 
-	renderStats() {
-		const planetStats = document.querySelector('.planets__stats');
-		planetStats.innerHTML = '<h2></h2>';
-		planetStats.querySelector('h2').innerHTML = this.displayName;
+	renderStats(wikiInfo) {
+		this.planetStats.innerHTML = this.planetStatsTemplate.innerHTML;
+		this.planetStats.querySelector('h2').innerHTML = this.displayName;
 
-		const image = document.createElement('img');
-		image.setAttribute('src', `./images/${this.name}.webp`);
-		planetStats.appendChild(image);
+		this.planetStats
+			.querySelector('img')
+			.setAttribute('src', `./images/${this.name}.webp`);
 
-		const wikiAPI = new WikiAPI(this.displayName);
-		const description = wikiAPI.getPlanetInfo();
+		this.planetStats.querySelector('p').innerHTML =
+			wikiInfo.slice(0, 400) +
+			'...' +
+			`<a href="https://pl.wikipedia.org/wiki/${this.displayName}" target="_blank">Wikipedia</a>`;
+	}
 
-		const p = document.createElement('p');
-		planetStats.appendChild(p);
-		p.innerHTML = description;
+	getPlanetInfo() {
+		const url = `http://pl.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro=true&explaintext=true&titles=${this.displayName}`;
+
+		fetch(url)
+			.then(res => res.json())
+			.then(res => {
+				const result = new Object(res.query.pages);
+				for (let i in result) {
+					this.renderStats(result[i].extract);
+				}
+			})
+			.catch(err => {
+				throw new Error(err);
+			});
 	}
 }
