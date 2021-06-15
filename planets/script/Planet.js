@@ -21,7 +21,7 @@ export class Planet {
 	}
 
 	getPlanetInfo() {
-		const url = `http://pl.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro=true&explaintext=true&titles=${this.displayName}`;
+		const url = `https://pl.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro=true&explaintext=true&titles=${this.displayName}`;
 
 		fetch(url)
 			.then(res => res.json())
