@@ -1,6 +1,12 @@
 import { AboutMe } from './AboutMe.esm.js';
+import { TechStack } from './TechStack.esm.js';
 
-const aboutMe = new AboutMe({
-	paragraph: document.querySelector('#aboutMe'),
-	data: 'aboutMe',
+new AboutMe({
+	node: document.querySelector('#aboutMe'),
+	key: 'aboutMe',
+});
+
+new TechStack({
+	node: document.querySelector('#techStack'),
+	key: 'techStack',
 });

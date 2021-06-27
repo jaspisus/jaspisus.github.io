@@ -1,3 +1,13 @@
 {
-	"aboutMe": "Od dłuższego czasu interesuje mnie Front-End, hobbystycznie czerpię wiedzę z kursów on-line, dlatego postanowiłem związać z tym swoją karierę. Szukam pierwszej pracy, albo stażu, aby zdobyć doświadczenie. Interesuję się również obróbką zdjęć oraz tworzeniem grafiki wektorowej. Stale rozwijam swoje umięjętności Web-Developera, aktualnie ćwiczę programowanie obiektowe w JS."
+	"aboutMe": "Od dłuższego czasu interesuje mnie Frontend, hobbystycznie czerpię wiedzę z kursów on-line, dlatego postanowiłem związać z tym swoją karierę. Szukam pierwszej pracy, albo stażu, aby zdobyć doświadczenie. Interesuję się również obróbką zdjęć oraz tworzeniem grafiki wektorowej. Stale rozwijam swoje umięjętności Web-Developera, aktualnie ćwiczę programowanie obiektowe w JS.",
+	"techStack": [
+		"HTML5",
+		"CSS3",
+		"SCSS",
+		"Bootstrap",
+		"JavaScript ES6",
+		"Node.js",
+		"Git",
+		"Bootstrap"
+	]
 }

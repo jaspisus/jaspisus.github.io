@@ -1,13 +1,13 @@
 export class AboutMe {
-	constructor({ paragraph, data }) {
-		this.paragraph = paragraph;
-		this.data = data;
+	constructor({ node, key }) {
+		this.node = node;
+		this.key = key;
 		this.renderText();
 	}
 
 	renderText() {
 		fetch('/data.json')
 			.then(res => res.json())
-			.then(res => (this.paragraph.innerHTML = res[this.data]));
+			.then(res => (this.node.innerHTML = res[this.key]));
 	}
 }
