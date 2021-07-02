@@ -1,3 +1,17 @@
+@mixin delAndResetColors {
+	color: white;
+	background-color: #637097;
+	border-bottom: 4px solid #4c5776;
+	border-right: 4px solid #4c5776;
+}
+
+@mixin delAndResetColorsActive {
+	border-bottom: 0px;
+	border-right: 0px;
+	border-top: 4px solid #414a64;
+	border-left: 4px solid #414a64;
+}
+
 body {
 	background-color: #3b4664;
 	color: white;
@@ -29,7 +43,7 @@ body {
 		margin-top: 10px;
 		padding: 20px;
 
-		button {
+		.input-btn {
 			position: relative;
 			font-size: 2rem;
 			background-color: #e9e3da;
@@ -58,7 +72,6 @@ body {
 			}
 
 			&:active {
-				// box-shadow: inset 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
 				border-bottom: 0px;
 				border-right: 0px;
 				border-top: 4px solid #a39692;
@@ -70,11 +83,65 @@ body {
 			flex-wrap: wrap;
 			justify-content: space-between;
 			align-items: space-between;
-			// height: 400px;
-			button {
+			.input-btn {
 				width: 22%;
 				height: 70px;
 				margin-bottom: 20px;
+
+				&:nth-child(8) {
+					order: 1;
+				}
+				&:nth-child(9) {
+					order: 2;
+				}
+				&:nth-child(10) {
+					order: 3;
+				}
+				&:nth-child(11) {
+					order: 4;
+
+					@include delAndResetColors;
+
+					&:active {
+						@include delAndResetColorsActive;
+					}
+				}
+				&:nth-child(5) {
+					order: 5;
+				}
+				&:nth-child(6) {
+					order: 6;
+				}
+				&:nth-child(7) {
+					order: 7;
+				}
+				&:nth-child(12) {
+					order: 8;
+				}
+				&:nth-child(2) {
+					order: 9;
+				}
+				&:nth-child(3) {
+					order: 10;
+				}
+				&:nth-child(4) {
+					order: 11;
+				}
+				&:nth-child(13) {
+					order: 12;
+				}
+				&:nth-child(16) {
+					order: 13;
+				}
+				&:nth-child(1) {
+					order: 14;
+				}
+				&:nth-child(15) {
+					order: 15;
+				}
+				&:nth-child(14) {
+					order: 16;
+				}
 			}
 		}
 
@@ -82,9 +149,28 @@ body {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-between;
-			button {
+			.input-btn {
 				width: 48%;
 				height: 70px;
+
+				@include delAndResetColors;
+
+				&:active {
+					@include delAndResetColorsActive();
+				}
+
+				&--equals {
+					background-color: #d03f2f;
+					border-bottom: 4px solid #7d2016;
+					border-right: 4px solid #7d2016;
+
+					&:active {
+						border-bottom: 0px;
+						border-right: 0px;
+						border-top: 4px solid #7d2016;
+						border-left: 4px solid #7d2016;
+					}
+				}
 			}
 		}
 	}
