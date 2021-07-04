@@ -84,6 +84,8 @@ const captureValue = e => {
 };
 
 const showResult = () => {
+	if (freshCalculation) return;
+
 	let result;
 	try {
 		result = eval(userInputs.join(''));
