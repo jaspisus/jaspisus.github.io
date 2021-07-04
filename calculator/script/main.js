@@ -59,18 +59,11 @@ const captureValue = e => {
 	}
 
 	const clickedBtn = e.target.dataset.value;
-	let parsedClickedBtn;
 
-	if (clickedBtn == 'DEL') {
-		backspace();
-	} else if (countingOperators.includes(clickedBtn)) {
-		parsedClickedBtn = clickedBtn;
+	if (clickedBtn && clickedBtn != 'DEL') {
+		renderDisplay(clickedBtn);
 	} else {
-		parsedClickedBtn = parseInt(clickedBtn);
-	}
-
-	if (parsedClickedBtn) {
-		renderDisplay(parsedClickedBtn);
+		backspace();
 	}
 
 	freshCalculation = false;
