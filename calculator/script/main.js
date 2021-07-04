@@ -87,7 +87,7 @@ const showResult = () => {
 	let result;
 	try {
 		result = eval(userInputs.join(''));
-		if (result != 'Infinity') {
+		if (result != 'Infinity' && result != 'Nan') {
 			display.innerHTML = result.toString().slice(0, 16);
 		} else {
 			display.innerHTML = 'ERROR';
@@ -97,7 +97,7 @@ const showResult = () => {
 	}
 
 	userInputs.length = 0;
-	userInputs[0] = 0;
+	userInputs[0] = result;
 	freshCalculation = true;
 };
 
