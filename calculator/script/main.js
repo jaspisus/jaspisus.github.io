@@ -29,7 +29,7 @@ const renderButtons = () => {
 };
 
 const renderDisplay = (value = false) => {
-	if (userInputs.length > 15) return;
+	if (userInputs.join('').length > 15) return;
 
 	if (!isLastDigitAnOperator) {
 		if (value) {
