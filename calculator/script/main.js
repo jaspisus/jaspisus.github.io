@@ -28,12 +28,17 @@ renderButtons();
 const userInputs = [0];
 
 let freshCalculation = true;
+let isLastDigitAnOperator = false;
 
 const renderDisplay = (value = false) => {
 	if (userInputs.length > 15) return;
-	if (value) {
-		userInputs.push(value);
+
+	if (!isLastDigitAnOperator) {
+		if (value) {
+			userInputs.push(value);
+		}
 	}
+
 	display.innerHTML = userInputs.join('');
 };
 
@@ -54,15 +59,24 @@ const backspace = () => {
 };
 
 const captureValue = e => {
-	if (freshCalculation) {
+	const clickedBtn = e.target.dataset.value;
+
+	if (freshCalculation && !countingOperators.includes(clickedBtn)) {
 		userInputs.pop();
 	}
 
-	const clickedBtn = e.target.dataset.value;
-
 	if (clickedBtn && clickedBtn != 'DEL') {
-		renderDisplay(clickedBtn);
-	} else {
+		if (countingOperators.includes(clickedBtn)) {
+			renderDisplay(clickedBtn);
+			isLastDigitAnOperator = true;
+		} else {
+			isLastDigitAnOperator = false;
+			renderDisplay(clickedBtn);
+		}
+	}
+
+	if (clickedBtn == 'DEL') {
+		isLastDigitAnOperator = false;
 		backspace();
 	}
 
@@ -70,10 +84,21 @@ const captureValue = e => {
 };
 
 const showResult = () => {
-	const result = eval(userInputs.join(''));
-	display.innerHTML = result.toString().slice(0, 16);
+	let result;
+	try {
+		result = eval(userInputs.join(''));
+		if (result != 'Infinity') {
+			display.innerHTML = result.toString().slice(0, 16);
+		} else {
+			display.innerHTML = 'ERROR';
+		}
+	} catch {
+		display.innerHTML = 'ERROR';
+	}
+
 	userInputs.length = 0;
 	userInputs[0] = 0;
+	freshCalculation = true;
 };
 
 buttonsBox.addEventListener('click', captureValue);
