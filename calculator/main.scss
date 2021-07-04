@@ -21,7 +21,7 @@ body {
 	&__main {
 		display: grid;
 		place-items: center;
-		height: 100vh;
+		height: 90vh;
 		font-family: 'Roboto Mono', monospace;
 	}
 }
@@ -29,13 +29,13 @@ body {
 .calc {
 	max-width: 500px;
 	min-width: 300px;
-	transform: scale(0.9);
 	font-size: 16px;
 
 	&__display {
+		line-height: 34px;
 		background-color: #181f32;
-		padding: 15px;
-		font-size: 3em;
+		padding: 15px 15px 17px 0;
+		font-size: 3.05em;
 		text-align: right;
 		border-radius: 15px;
 	}
@@ -181,8 +181,12 @@ body {
 	}
 }
 
-@media (max-width: 376px) {
+@media (max-width: 576px) {
 	.calc {
-		font-size: 12px;
+		font-size: 14px;
+
+		&__display {
+			font-size: 2em;
+		}
 	}
 }

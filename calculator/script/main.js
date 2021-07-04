@@ -5,6 +5,11 @@ const resetBtn = document.querySelector('#reset-btn');
 
 const countingOperators = ['DEL', '+', '-', '*', '/', '.'];
 
+const userInputs = [0];
+
+let freshCalculation = true;
+let isLastDigitAnOperator = false;
+
 const renderButtons = () => {
 	for (let i = 0; i < 10; i++) {
 		const digitButton = document.createElement('button');
@@ -23,15 +28,8 @@ const renderButtons = () => {
 	});
 };
 
-renderButtons();
-
-const userInputs = [0];
-
-let freshCalculation = true;
-let isLastDigitAnOperator = false;
-
 const renderDisplay = (value = false) => {
-	if (userInputs.length > 15) return;
+	if (userInputs.join('').length > 15) return;
 
 	if (!isLastDigitAnOperator) {
 		if (value) {
@@ -84,10 +82,12 @@ const captureValue = e => {
 };
 
 const showResult = () => {
+	if (freshCalculation) return;
+
 	let result;
 	try {
 		result = eval(userInputs.join(''));
-		if (result != 'Infinity') {
+		if (result != 'Infinity' && result != 'Nan') {
 			display.innerHTML = result.toString().slice(0, 16);
 		} else {
 			display.innerHTML = 'ERROR';
@@ -97,9 +97,11 @@ const showResult = () => {
 	}
 
 	userInputs.length = 0;
-	userInputs[0] = 0;
+	userInputs[0] = result;
 	freshCalculation = true;
 };
+
+renderButtons();
 
 buttonsBox.addEventListener('click', captureValue);
 
