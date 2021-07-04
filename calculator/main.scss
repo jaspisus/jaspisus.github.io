@@ -27,12 +27,15 @@ body {
 }
 
 .calc {
-	width: 500px;
+	max-width: 500px;
+	min-width: 300px;
+	transform: scale(0.9);
+	font-size: 16px;
 
 	&__display {
 		background-color: #181f32;
 		padding: 15px;
-		font-size: 3rem;
+		font-size: 3em;
 		text-align: right;
 		border-radius: 15px;
 	}
@@ -45,7 +48,7 @@ body {
 
 		.input-btn {
 			position: relative;
-			font-size: 2rem;
+			font-size: 2em;
 			background-color: #e9e3da;
 			border: none;
 			border-radius: 7px;
@@ -65,9 +68,11 @@ body {
 				opacity: 0;
 			}
 
-			&:hover {
-				&::after {
-					opacity: 1;
+			@media (hover: hover) and (pointer: fine) {
+				&:hover {
+					&::after {
+						opacity: 1;
+					}
 				}
 			}
 
@@ -173,5 +178,11 @@ body {
 				}
 			}
 		}
+	}
+}
+
+@media (max-width: 376px) {
+	.calc {
+		font-size: 12px;
 	}
 }
